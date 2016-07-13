@@ -1,0 +1,340 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  &:link,&:visited,&:active {
+    color: #ccc;
+  }
+}
+a,button,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+
+input,button {
+  border: none;
+  background: none;
+  outline: none;
+  -webkit-appearance: none;
+}
+@mixin placeholder($color,$font_size,$background) {
+  input::-webkit-input-placeholder { /* WebKit browsers */
+    color: $color;
+    font-size:$font_size;
+    background-color:$background;
+  }
+  input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: $color;
+    font-size:$font_size;
+    background-color:$background;
+  }
+  input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: $color;
+    font-size:$font_size;
+    background-color:$background;
+  }
+  input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: $color;
+    font-size:$font_size;
+    background-color:$background;
+  }
+}
+
+i, em {
+  font-style: normal;
+}
+img {
+  vertical-align: top;
+  border: none;
+}
+@function rem($n){
+  @return $n/36;
+}
+
+.ellopsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+//三角形
+@mixin arrow($direction,$size,$color) {
+  width: 0;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+  overflow: hidden;
+  border-width: $size;
+  cursor: pointer;
+  @if $direction == top {
+    border-style: dashed dashed solid dashed;
+    border-color: transparent transparent $color transparent;
+    border-top: none;
+  }
+  @else if $direction == bottom {
+    border-style: solid dashed dashed dashed;
+    border-color: $color transparent transparent transparent;
+    border-bottom: none;
+  }
+  @else if $direction == right {
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent $color;
+    border-right: none;
+  }
+  @else if $direction == left {
+    border-style: dashed solid dashed dashed;
+    border-color: transparent $color transparent transparent;
+    border-left: none;
+  }
+}
+@mixin backgroun-size($value...) {
+  -webkit-background-size: $value;
+  background-size: $value;
+}
+@mixin radius($value) {
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  border-radius: $value;;
+}
+@mixin disbox {
+  display: -webkit-box;
+  display: -moz-box;
+}
+
+@mixin flex($value){
+  -webkit-box-flex: $value;
+  -moz-box-flex: $value;
+}
+
+@mixin background_size($value...) {
+  -webkit-background-size: $value;
+  background-size: $value;
+}
+
+@mixin clamp($value) {
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $value;
+  -webkit-box-orient: vertical;
+}
+@mixin clamp_ellipsis($line_height,$line) {
+  position:relative;
+  line-height: $line_height;
+  height: $line_height*$line;
+  overflow:hidden;
+}
+@mixin translate($value1,$value2) {
+  -webkit-transform: translate($value1,$value2);
+  -moz-transform: translate($value1,$value2);
+  -ms-transform: translate($value1,$value2);
+  -o-transform: translate($value1,$value2);
+  transform: translate($value1,$value2);
+}
+//水平垂直居中
+@mixin ver-hor-center($value) {
+  text-align: center;
+  line-height: rem($value);
+  height: rem($value);
+}
+@mixin box-shadow ($value...) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+.clamp_ellipsis:after {
+  content:"...";
+  font-weight:bold;
+  position:absolute;
+  bottom:0;
+  right:0;
+  padding:0 20px 1px 45px;
+}
+ //关闭按钮
+.modal-close {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.modal-close:before, .modal-close:after {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 20px;
+  background: #ffffff;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
+.modal-close:after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+ //返回箭头
+.back {
+  display: inline-block;
+  position: relative;
+  width: 23px;
+  height: 23px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.back:after, .back:before {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 13px;
+  background: #ffffff;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
+
+.back:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 8px;
+}
+//向下箭头
+.down {
+  display: inline-block;
+  position: relative;
+  width: 23px;
+  height: 14px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.down:after, .down:before {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 13px;
+  background: #ffffff;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0;
+  left: 18px;
+}
+.down:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 0;
+  left: 9px;
+}
+li {
+  list-style: none;
+}
+html {
+  font-size: 50px
+}
+
+//清除浮动
+.clearFix:after {
+  clear:both;
+  display: block;
+  content: "";
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size:21.33px
+  }
+}
+
+@media screen and (min-width: 360px) {
+  html {
+    font-size:24px
+  }
+}
+
+@media screen and (min-width: 375px) {
+  html {
+    font-size:25px
+  }
+}
+
+@media screen and (min-width: 384px) {
+  html {
+    font-size:25.6px
+  }
+}
+
+@media screen and (min-width: 400px) {
+  html {
+    font-size:26.67px
+  }
+}
+
+@media screen and (min-width: 414px) {
+  html {
+    font-size:27.6px
+  }
+}
+
+@media screen and (min-width: 424px) {
+  html {
+    font-size:28.27px
+  }
+}
+
+@media screen and (min-width: 480px) {
+  html {
+    font-size:32px
+  }
+}
+
+@media screen and (min-width: 540px) {
+  html {
+    font-size:36px
+  }
+}
+
+@media screen and (min-width: 720px) {
+  html {
+    font-size:48px
+  }
+}
+
+@media screen and (min-width: 750px) {
+  html {
+    font-size:50px
+  }
+}
+
+
