@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建自定义指令</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <style>
+        span {
+            display: block;
+            width: 100px;
+            height: 100px;
+            background-color:  yellow;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+<!--
+    创建自定义的指令
+    除了 AngularJS 内置的指令外，我们还可以创建自定义指令。
+    你可以使用 .directive 函数来添加自定义的指令。
+    要调用自定义指令，HTML 元素上需要添加自定义指令名。
+    使用驼峰法来命名一个指令， runoobDirective, 但在使用它时需要以 - 分割, runoob-directive:
+    你可以通过以下方式来调用指令：
+    1.元素名
+    2.属性
+    3.类名
+    4.注释
+    restrict 值可以是以下几种:
+    E 只限元素名使用
+    A 只限属性使用
+    C 只限类名使用
+    M 只限注释使用
+    restrict 默认值为 EA, 即可以通过元素名和属性名来调用指令。
+-->
+<input type="text" ng-model="txt">
+<!--元素名-->
+<runoob-directive url-href="http://www.baidu.com" content="{{txt}}"></runoob-directive>
+
+<!--属性-->
+<div runoob-directive></div>
+
+<!--类名-->
+<div class="runoob-directive:chenzhongying"></div>
+
+<!--注释-->
+<!-- directive:runoob-directive -->
+<input type="checkbox">
+<input type="radio">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<script>
+    var app = angular.module("myApp", []);
+    app.directive("runoobDirective", function() {
+        return {
+            restrict : "E",
+            replace : true,//全部替换掉
+            /*template : "<h1>自定义指令!</h1>",*/
+            template: "<a href='{{urlHref}}'>{{content}}</a>",
+            scope: {
+                urlHref: '@',
+                content: '@'
+            }
+        };
+    });
+    $.when($.ajax('json'), $.ajax('json2')).then(function(a,b){console.log(a,b)},function(){alert('失败啦')});
+    var array = [1,2,3,4],
+            b = $('input');
+    alert($.inArray(2,array));
+    console.log(array.jquery);
+    $('input').error(function(){
+        alert('cuola');
+    });
+
+    $.extend({
+        compute  : function(a,b){
+            return  a>b ? a : b;
+        },
+    });
+    var sul = $.compute(1,2);
+    alert(sul);
+    jQuery.fn.extend({
+        check: function() {
+            return this.each(function() { this.checked = true; });
+        },
+        uncheck: function() {
+            return this.each(function() { this.checked = false; });
+        },
+        change_color: function(color){
+            return this.each(function(){
+                this.style.backgroundColor= color;
+            })
+        }
+    });
+    var a = $('span').change_color('red');
+    console.log(a);
+    $("input[type=checkbox]").check();
+    $("input[type=radio]").uncheck();
+</script>
+
+</body>
+</html>

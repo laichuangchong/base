@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>表达式两种写法</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" >
+
+<div ng-init="quantity=1;cost=5">
+
+    <p>总价： {{ quantity * cost }}</p>
+
+</div>
+<div ng-init="quantity=1;cost=5">
+
+    <p>总价： <span ng-bind="quantity * cost"></span></p>
+
+</div>
+<div ng-init="firstName='John';lastName='Doe'">
+
+    <p>姓名： {{ firstName + " " + lastName }}</p>
+
+</div>
+<div ng-init="firstName='John';lastName='Doe'">
+
+    <p>姓名： <span ng-bind="firstName + ' ' + lastName"></span></p>
+
+</div>
+<!--初始化json-->
+<div ng-init="person={firstName:'John',lastName:'Doe'}">
+
+    <p>姓为 {{ person.lastName }}</p>
+
+</div>
+<!--初始化数组-->
+<div ng-init="points=[1,15,19,2,40]">
+
+    <p>第三个值为 {{ points[2] }}</p>
+
+</div>
+
+<div ng-init="points=[1,15,19,2,40]">
+
+    <p>第三个值为 <span ng-bind="points[2]"></span></p>
+
+</div>
+
+<p>尝试修改以下表单。</p>
+
+<div ng-controller="myCtrl">
+
+    名: <input type="text" ng-model="firstName"><br>
+    姓: <input type="text" ng-model="lastName"><br>
+    <br>
+    姓名: {{firstName + " " + lastName}}
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.firstName= "John";
+        $scope.lastName= "Doe";
+    });
+</script>
+
+</body>
+</html>

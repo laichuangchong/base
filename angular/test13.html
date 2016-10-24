@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <button ng-click="count = count + 1">点我！</button>
+
+    <p>{{ count }}</p>
+
+    <button ng-click="toggle()"></button>
+    <input type="text" ng-model="firstName">
+    <input type="text" ng-model="lastName">
+    <p ng-hide="myVar">{{firstName + " " + lastName}}</p>
+
+</div>
+<script>
+     var myApp = angular.module('myApp',[]).controller('myCtrl',function($scope){
+         $scope.count = 1;
+         $scope.myVar = false;
+         $scope.toggle = function(){
+             $scope.myVar  = !$scope.myVar;
+         }
+
+     });
+</script>
+</body>
+</html>

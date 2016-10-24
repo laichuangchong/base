@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+</head>
+<body ng-app="" >
+<div ng-init="mySwitch=true">
+
+    <p>
+        <button ng-disabled="mySwitch">点我!</button>
+    </p>
+
+    <p>
+        <input type="checkbox" ng-model="mySwitch">按钮
+    </p>
+
+    <p>
+        {{ mySwitch }}
+    </p>
+
+</div>
+<div>
+
+    <p ng-show="mySwitch">我是可见的。</p>
+    <p ng-show="13> 12">表达式。</p>
+
+</div>
+</body>
+</html>

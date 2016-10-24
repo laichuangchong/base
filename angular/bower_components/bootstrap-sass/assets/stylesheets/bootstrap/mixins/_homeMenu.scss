@@ -1,0 +1,31 @@
+@mixin keyframes ($name, $from, $to) {
+
+  @-webkit-keyframes #{$name}
+  {
+    from {
+      -webkit-transform: rotate($from);
+    }
+    to {
+      -webkit-transform: rotate($to);
+    }
+  }
+  @-moz-keyframes #{$name}
+  {
+    from {
+      -moz-transform: rotate($from);
+    }
+    to {
+      -moz-transform: rotate($to);
+    }
+  }
+  @-o-keyframes #{$name}
+  {
+    from {
+      -o-transform: rotate($from);
+    }
+    to {
+      -o-transform: rotate($to);
+    }
+  }
+
+}

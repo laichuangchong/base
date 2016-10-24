@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>过滤器</title>
+        <script src="bower_components/angular/angular.min.js"></script>
+    </head>
+    <body ng-app="myApp">
+        <!--
+            currency	格式化数字为货币格式。
+            filter	    从数组项中选择一个子集。
+            lowercase	格式化字符串为小写。
+            orderBy	    根据某个表达式排列数组。
+            uppercase	格式化字符串为大写。
+        -->
+        <div  ng-controller="personCtrl">
+
+            <p>姓名为 {{ lastName | uppercase }}</p>
+
+        </div>
+        <input type="number" ng-model="quantity">
+        <input type="number" ng-model="price">
+
+        <p>总价 = {{ (quantity * price) | currency }}</p>
+
+        <input type="text" ng-model="test"></p>
+
+        <div ng-controller="namesCtrl">
+
+            <ul>
+                <li ng-repeat="x in names | filter:test | orderBy:'country'">
+                    {{ (x.name | uppercase) + ', ' + x.country }}
+                </li>
+            </ul>
+        </div>
+        <script>
+            var myApp =  angular.module('myApp',[])
+                    .controller('personCtrl',function($scope){
+                        $scope.lastName = 'chenzhogying'
+                    }).controller('namesCtrl',function($scope){
+                        $scope.names = [
+                            {name:'chen',country:'chinese'},
+                            {name:'zhong',country:'U.S.A'},
+                            {name:'ying',country:'Japan'}
+                        ]
+                    });
+        </script>
+    </body>
+</html>

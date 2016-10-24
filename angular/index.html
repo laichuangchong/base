@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS 路由实例</title>
+</head>
+<!--通常我们的URL形式为 http://runoob.com/first/page，但在单页Web应用中 AngularJS 通过 # + 标记 实现，当我们点击以上的任意一个链接时，向服务端请的地址都是一样的 。 -->
+<body ng-app='routingDemoApp'>
+
+<h2>AngularJS 路由应用</h2>
+<ul>
+    <li><a href="#/">test2</a></li>
+    <li><a href="#/computers">test3</a></li>
+    <li><a href="#/printers">test4</a></li>
+    <li><a href="#/other">其他</a></li>
+
+</ul>
+
+<div ng-view></div>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower-angular-route/angular-route.min.js"></script>
+<script>
+   /* angular.module('routingDemoApp',['ngRoute'])
+            .config(['$routeProvider', function($routeProvider){
+                $routeProvider
+                        .when('/',{template:'这是首页页面'})
+                        .when('/computers',{template:'这是电脑分类页面'})
+                        .when('/printers',{template:'这是打印机页面'})
+                        .otherwise({redirectTo:'/'});
+            }]);*/
+    angular.module('routingDemoApp',['ngRoute'])
+            .config(['$routeProvider', function($routeProvider){
+                $routeProvider
+                        .when('/',{templateUrl:'test2.html'})
+                        .when('/computers',{templateUrl:'test3.html'})
+                        .when('/printers',{templateUrl:'test4.html'})
+                        .otherwise({redirectTo:'/'});
+            }]);
+</script>
+
+
+</body>
+</html>

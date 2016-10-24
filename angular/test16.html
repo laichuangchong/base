@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+    <style>
+        /*当不合法时的状态
+        ng-model 指令根据表单域的状态添加/移除以下类：
+        ng-empty
+        ng-not-empty
+        ng-touched
+        ng-untouched
+        ng-valid
+        ng-invalid
+        ng-dirty
+        ng-pending
+        ng-pristine
+        */
+        form {
+            width: 300px;
+            margin: 100px auto;
+        }
+        span.error {
+            color: red;
+        }
+        .form-group {
+            position: relative;
+        }
+        i {
+            position: absolute;
+            right: 8px;
+            top: 37px;
+        }
+        .has-success {
+            border-color: green;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<form name="myForm" novalidate ng-submit = "submit()">
+    <h1>注册</h1>
+    <div class="form-group" ng-class="{'has-success': myForm.userName.$valid,'has-error':myForm.userName.$invalid && myForm.userName.$touched}">
+        <label>名字: </label>
+        <input type="text" ng-model="userdata.userName" name="userName" ng-maxlength = "5" ng-minlength = "2" required class="form-control">
+        <i class="fa fa-check" ng-if="myForm.userName.$valid"></i>
+        <span class="error" ng-if="(myForm.userName.$error.minlength || myForm.userName.$error.maxlength) && myForm.userName.$touched">长度介于2~5之间</span>
+        <span class="error" ng-if="myForm.userName.$error.required && myForm.userName.$touched">必填</span>
+
+    </div>
+   <div class="form-group" ng-class="{'has-success': myForm.email.$valid,'has-error':myForm.email.$invalid && myForm.email.$touched}">
+       <label for=""> Email:</label>
+       <input type="email" name="email" ng-model="userdata.email" required class="form-control">
+       <i class="fa fa-check" ng-if="myForm.email.$valid"></i>
+       <span class="error" ng-if="myForm.email.$error.email && myForm.email.$touched">不是一个合法的邮箱地址</span>
+       <span class="error" ng-if="myForm.email.$error.required && myForm.email.$touched">必填</span>
+   </div>
+    <div class="form-group" ng-class="{'has-success': myForm.password.$valid,'has-error':myForm.password.$invalid && myForm.password.$touched}">
+        <label>密码: </label>
+        <input type="password" ng-model="userdata.password" name="password" ng-maxlength = "5" ng-minlength = "2" required class="form-control">
+        <i class="fa fa-check" ng-if="myForm.password.$valid"></i>
+        <span class="error" ng-if="(myForm.password.$error.minlength || myForm.password.$error.maxlength) && myForm.password.$touched">长度介于2~5之间</span>
+        <span class="error" ng-if="myForm.password.$error.required && myForm.password.$touched">必填</span>
+    </div>
+    <div class="form-group">
+        <label>确认密码: </label>
+        <input type="password" ng-model="userdata.password2" compare = "userdata.password" name="password2" required class="form-control">
+        <i class="fa fa-check" ng-if="myForm.password2.$valid"></i>
+        <span class="error" ng-if="myForm.password2.$error.compare && myForm.password2.$touched">两次输入不一致</span>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary">注册</button>
+    </div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.userdata = {};
+        $scope.submit = function() {
+            console.log($scope.userdata);
+            if($scope.myForm.$invalid) {
+                alert("表单填写有误");
+            }
+            if($scope.myForm.$valid) {
+                alert("注册成功");
+            }
+        }
+    }).directive('compare',function(){
+        var o = {};
+        o.strict = "AE";
+        o.scope = {
+            orgText:'=compare'
+        }
+        o.require = 'ngModel';
+        o.link = function(sco, ele, att, con)
+        {
+            con.$validators.compare = function(v)
+            {
+                return v == sco.orgText;
+            }
+            sco.$watch('orgText',function(){
+                con.$validate();
+            });
+        }
+        return o;
+    })
+</script>
+
+</body>
+</html>

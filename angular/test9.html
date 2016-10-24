@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>服务端</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div >
+    <p>当前页面的URL:{{url}}</p>
+    <script>
+
+    </script>
+</div>
+<div>
+    <p>{{myWelcome}}</p>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('myCtrl',function($scope,$location,$http){
+            $scope.url = $location.absUrl();
+            $http.get("json").then(function (response) {
+                $scope.myWelcome = response.data;
+                console.log(response.data);
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格应用</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <style>
+        /*currency	格式化数字为货币格式。
+        filter	从数组项中选择一个子集。
+        lowercase	格式化字符串为小写。
+        orderBy	根据某个表达式排列数组。
+        uppercase	格式化字符串为大写。*/
+        /*orderBy过滤器可以将一个数组中的元素进行排序，接收一个参数来指定排序规则，参数可以是一个字符串，表示以该属性名称进行排序。可以是 一个函数，定义排序属性。还可以是一个数组，表示依次按数组中的属性值进行排序（若按第一项比较的值相等，再按第二项比较），还是拿上面的孩子数组举例：
+        <div>{{ childrenArray | orderBy : 'age' }}</div> //按age属性值进行排序，若是-age，则倒序
+        <div>{{ childrenArray | orderBy : orderFunc }}</div> //按照函数的返回值进行排序
+        <div>{{ childrenArray | orderBy : ['age','name'] }}</div> //如果age相同，按照name进行排序*/
+        table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        table tr:nth-child(odd) {
+            background-color: #f1f1f1;
+        }
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body ng-app = 'myApp'>
+<div ng-controller="customersCtrl">
+    <table>
+        <tr ng-repeat="x in names | orderBy : 'Country'">
+            <td>{{ $index + 1 }}</td>
+            <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Name }}</td>
+            <td>{{ x.Country | uppercase}}{{x.date | date : 'yyyy-MM-dd hh:mm:ss EEEE'}}</td>
+        </tr>
+    </table>
+
+</div>
+<script>
+    var myApp = angular.module('myApp',[]);
+    myApp.controller('customersCtrl',function($scope,$http){
+        $http.get('json').then(function(response){
+            console.log(response);
+            $scope.names = response.data.records;
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="jquery-ui-1.12.1.custom%202/jquery-ui.min.css">
+    <script src="jquery-ui-1.12.1.custom%202/external/jquery/jquery.js"></script>
+    <script src="jquery-ui-1.12.1.custom%202/jquery-ui.min.js"></script>
+    <script src="jquery-ui-1.12.1.custom%202/cn.js"></script>
+
+</head>
+<body>
+
+<p>日期：<input type="text" id="datepicker" size="30"></p>
+<span id="icon" class="ui-icon ui-icon-calculator"></span>
+<script>
+    $(function() {
+        $.datepicker.setDefaults({
+            showOn: "both",
+            buttonImageOnly: true,
+            buttonImage: "jquery-ui-1.12.1.custom%202/images/icon.png",
+            buttonText: "Calendar"
+        });
+        $( "#datepicker" ).datepicker({
+            showWeek: true,
+            showButtonPanel: true
+        });
+        $( "#datepicker" ).datepicker("option", "dateFormat", "yy-mm-dd");
+        // Getter
+        var maxDate = $( "#datepicker" ).datepicker( "option", "maxDate" );
+        console.log(maxDate);
+
+
+// Setter
+        $( "#datepicker" ).datepicker( "option", "maxDate", "+1d" );
+    });
+</script>
+</body>
+</html>

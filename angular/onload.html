@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var arr = ["http://wanka-bcd.kss.ksyun.com/images/e3df881b2fb8ab374c0ab5122cb9abbd.jpeg","http://scimg.jb51.net/allimg/160716/105-160G61F250436.jpg","http://scimg.jb51.net/allimg/160815/103-160Q509544OC.jpg","http://pic41.nipic.com/20140509/18696269_121755386187_2.png"];
+    var number = 1;
+    for(var i = 0; i< arr.length; i++) {
+        var img = new Image();
+        img.src = arr[i];
+       /* img.onload = function(){
+            number++;
+            if(number == 5) {
+                alert("chengong");
+            }
+        }
+*/
+        number++;
+        document.body.appendChild(img);
+
+    }
+
+    /*img.src = "http://wanka-bcd.kss.ksyun.com/images/e3df881b2fb8ab374c0ab5122cb9abbd.jpeg";
+    img.onload = function() {
+        number = 1;
+        img.appendChild(document.body);
+    };*/
+
+    console.log(number);
+</script>
+</body>
+</html>
