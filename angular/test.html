@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .clearfix::after {
+            display: block;
+            clear:both;
+            overflow:hidden;
+            content:" ";
+        }
+    </style>
+</head>
+<body>
+<div class="clearfix">
+    <div style="float:left;width:200px;">
+        <ul>
+            <li>111</li>
+            <li>111</li>
+            <li>111</li>
+            <li>111</li>
+            <li>111</li>
+            <li>111</li>
+            <li>111</li>
+            <li>111</li>
+            <li>111</li>
+            <li>111</li>
+            <li>111</li>
+            <li>111</li>
+        </ul>
+    </div>
+    <div style="height:100%;float:right;width:200px;"></div>
+</div>
+<script src="../angular/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../common.js"></script>
+<script>
+$.cookie("chen","zhongying");
+console.log($.cookie('chen'));
+$.cookie("chen","null");
+</script>
+</body>
+</html>

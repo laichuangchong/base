@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+*{ margin:0; padding:0; list-style:none;}
+.box{ width:534px; height:300px; position:relative; margin:50px auto; overflow:hidden;}
+.box ul{ position:absolute; left:0; top:0;}
+.box ul li{ float:left; width:534px; height:300px;}
+.box ul li img{ height:300px;}
+
+.box a{ transition:.2s all ease;}
+.box .prev,.box .next{position:absolute;  top:50%; z-index:2; height:80px; line-height:80px; background:rgba(0,0,0,0.6); color:#fff; width:80px; text-align:center; margin-top:-40px; display:none;}
+.box .prev{ left:0;}
+.box .next{ right:0;}
+.box a:hover{ background:rgba(255,0,0,0.4);}
+
+.box ol{ position:absolute; left:50%;  bottom:10px;}
+.box ol li{ width:20px; height:20px; background:#f60; float:left; margin:2px; text-align:center; text-indent:-9999px; border-radius:50%;position:relative;left:-50%;}
+.box ol li.active{ background:#fff;}
+</style>
+
+<script src="jquery-1.7.2.js"></script>
+<script src="carousel.js"></script>
+<script>
+	$(function(){
+		$('.box').carousel();
+	});
+</script>
+</head>
+
+<body>
+<div  class="box">
+	<a href="javascript:;" class="prev">prev</a>
+    <a href="javascript:;" class="next">next</a>
+	<ul>
+    	<li><img src="img/0.jpg"></li>
+    	<li><img src="img/1.jpg"></li>
+    	<li><img src="img/2.jpg"></li>
+    	<li><img src="img/3.jpg"></li>
+    	<li><img src="img/4.jpg"></li>
+    </ul>
+    <ol>
+    	<li class="active">0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ol>
+</div>
+<div  class="box">
+	<a href="javascript:;" class="prev">prev</a>
+    <a href="javascript:;" class="next">next</a>
+	<ul>
+    	<li><img src="img/0.jpg"></li>
+    	<li><img src="img/1.jpg"></li>
+    	<li><img src="img/2.jpg"></li>
+    	<li><img src="img/3.jpg"></li>
+    	<li><img src="img/4.jpg"></li>
+    </ul>
+    <ol>
+    	<li class="active">0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ol>
+</div>
+</body>
+</html>

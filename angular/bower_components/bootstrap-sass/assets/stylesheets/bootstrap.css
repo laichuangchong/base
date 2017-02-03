@@ -2576,11 +2576,20 @@ input[type="search"] {
     vertical-align: text-bottom; }
 
 .checkbox-inline i {
-  border-radius: 2px;
-  background-color: red; }
+  border-radius: 2px; }
   .checkbox-inline i.checked {
     background-image: url(../images/checkmark.png);
-    background-repeat: no-repeat; }
+    background-repeat: no-repeat;
+    background-color: red; }
+  .checkbox-inline i.indeterminate {
+    background-color: red; }
+    .checkbox-inline i.indeterminate:before {
+      content: "-";
+      color: #fff;
+      font-size: 32px;
+      text-align: center;
+      margin-top: -18px;
+      display: block; }
 
 .radio-inline i {
   border-radius: 50%; }

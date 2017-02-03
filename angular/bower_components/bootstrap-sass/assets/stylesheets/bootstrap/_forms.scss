@@ -273,10 +273,22 @@ input[type="search"] {
 }
 .checkbox-inline i {
   border-radius: 2px;
-  background-color: red;
   &.checked {
     background-image: url(../images/checkmark.png);
     background-repeat: no-repeat;
+    background-color: red;
+
+  }
+  &.indeterminate {
+    background-color: red;
+    &:before {
+      content: "-";
+      color: #fff;
+      font-size: 32px;
+      text-align: center;
+      margin-top: -18px;
+      display: block;
+    }
   }
 }
 .radio-inline i {

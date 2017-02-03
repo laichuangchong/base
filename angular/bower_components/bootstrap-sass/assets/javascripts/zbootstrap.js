@@ -34,23 +34,34 @@ $.fn.extend({
     check: function(){ //表单单选复选
         $(this).find("[type='checkbox'],[type='radio']").on("change",function(event){
             var $target =$(event.target);
-            if(event.target.type == 'checkbox') {
-                $target.prev().toggleClass('checked',$target.prop('checked'));
-                var className = event.target.className;
-                if(className == 'check-all') {
-                    $("."+event.target.id).prop('checked',event.target.checked).prev().toggleClass('checked',event.target.checked);
-                }else{
-                    var mark = false;
-                    $("."+className).each(function(){
-                        if(!$(this).prop('checked')) {
-                            mark = true;
+            var targetType = $target.prop('checked');
+            switch(event.target.type) {
+                case "checkbox":
+                    $target.prev().toggleClass('checked',targetType);
+                    var className = event.target.className;
+                    if(className){
+                        if(className.indexOf('check-all') != -1) {
+                            console.log($target.prev());
+                            $target.prev().removeClass("indeterminate");
+                            $("."+event.target.id).prop('checked',targetType).prev().toggleClass('checked',targetType);
+                        }else{
+                            if($("."+className+":checked").length > 0 && $("."+className+":checked").length < $("."+className).length) {
+                                $("#"+className).prop("checked",true).prev().addClass("indeterminate").removeClass("checked");
+                            }else if($("."+className+":checked").length == $("."+className).length)
+                            {
+                                $("#"+className).prop("checked",true).prev().addClass("checked").removeClass("indeterminate");
+                            }else if($("."+className+":checked").length == 0){
+                                $("#"+className).prop("checked",false).prev().removeClass("indeterminate");
+                            }
                         }
-                    });
-                    $("#"+className).prop("checked",!mark).prev().toggleClass('checked',!mark);
-                }
-            }else if(event.target.type == 'radio') {
-                $target.prev().addClass('checked').parent('label').siblings().find('i').removeClass('checked');
+                    }
+                    break;
+                case "radio":
+                    $target.prev().addClass('checked').parent('label').siblings().find('i').removeClass('checked');
+                    break;
+
             }
+
         });
         return this;
     }
